@@ -52,13 +52,16 @@ function updateSavedColumns() {
 
 // Create DOM Elements for each list item
 function createItemEl(columnEl, column, item, index) {
-  console.log('columnEl:', columnEl);
-  console.log('column:', column);
-  console.log('item:', item);
-  console.log('index:', index);
+  // console.log('columnEl:', columnEl);
+  // console.log('column:', column);
+  // console.log('item:', item);
+  // console.log('index:', index);
   // List Item
   const listEl = document.createElement('li');
   listEl.classList.add('drag-item');
+  listEl.textContent = item;
+  //Append
+  columnEl.appendChild(listEl);
 
 }
 
@@ -71,16 +74,31 @@ function updateDOM() {
   // Backlog Column
   backlogList.textContent = '';
   backlogListArray.forEach((backlogItems, index) => {
-    
+    createItemEl(backlogItems, 0, backlogItems, index );
+
   })
   // Progress Column
+  progressList.textContent = '';
+  backlogListArray.forEach((backlogItems, index) => {
+    createItemEl(backlogItems, 0, backlogItems, index );
 
+  })
   // Complete Column
+  completeList.textContent = '';
+  backlogListArray.forEach((backlogItems, index) => {
+    createItemEl(backlogItems, 0, backlogItems, index );
 
+  })
   // On Hold Column
+  onHoldList.textContent = '';
+  backlogListArray.forEach((backlogItems, index) => {
+    createItemEl(backlogItems, 0, backlogItems, index );
 
+  })
   // Run getSavedColumns only once, Update Local Storage
 
 
 }
 
+// Onload we want to update our DOM function
+updateDOM();
