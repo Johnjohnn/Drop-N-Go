@@ -102,6 +102,15 @@ function updateDOM() {
 
 }
 
+// Allow array to reflec Drag and Drop 
+function rebuildArray() {
+console.log(backlogList.children)
+console.log(progressList.children)
+for (let i = 0 ; i < backlogList.children.length; i++) {
+  backlogListArray.push(backlogList.children[i].textContent);
+}
+}
+
 // when Items Starts Draggin 
 function drag (e) {
 draggedItem = e.target;
@@ -117,6 +126,7 @@ function allowDrop(e){
 function dragEnter(column) {
   listColumns[column].classList.add('over');
   currentColumn = column;
+  rebuildArray();
 }
 // Dropping Item in Colum 
 function drop(e) {
