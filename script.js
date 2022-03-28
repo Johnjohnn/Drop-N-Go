@@ -3,7 +3,7 @@ const saveItemBtns = document.querySelectorAll('.solid');
 const addItemContainers = document.querySelectorAll('.add-container');
 const addItems = document.querySelectorAll('.add-item');
 // Item Lists
-const itemLists = document.querySelectorAll('.drag-item-list');
+const listColumns = document.querySelectorAll('.drag-item-list');
 const backlogList = document.getElementById('backlog-list');
 const progressList = document.getElementById('progress-list');
 const completeList = document.getElementById('complete-list');
@@ -112,9 +112,23 @@ draggedItem = e.target;
 function allowDrop(e){
   e.preventDefault();
 }
+
+// When Item Entere Column Area
+function dragEnter(column) {
+  listColumns[column].classList.add('over');
+  currentColumn = column;
+}
 // Dropping Item in Colum 
 function drop(e) {
   e.preventDefault();
+  // Remove Background Color/Padding
+  listColumns.forEach((column) => {
+    column.classList.remove('over');
+  });
+  // Add Item to Column
+  const parent = listColumns[currentColumn];
+  parent.appendChild(draggedItem);
+
 }
 
 // Onload we want to update our DOM function
